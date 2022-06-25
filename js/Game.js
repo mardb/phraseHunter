@@ -2,7 +2,9 @@
 class Game {
   constructor() {
     this.missed = 0;
-    this.phrases = [new Phrase('aaasst')];
+    this.phrases = [
+      new Phrase('mom')
+    ];
     this.activePhrase = phrase;
     // console.log(this.activePhrase)
   }

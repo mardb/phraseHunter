@@ -1,25 +1,4 @@
-//testing phrase
-// const game = new Game();
-// game.phrases.forEach((phrase, index) => {
-//   console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
-// });
 
-// const logPhrase = (phrase) => { 
-//   console.log(`Phrase - phrase: `, phrase.phrase); 
-//   }; 
-//   const game = new Game(); 
-//   logPhrase(game.getRandomPhrase()); 
-//   logPhrase(game.getRandomPhrase()); 
-//   logPhrase(game.getRandomPhrase()); 
-//   logPhrase(game.getRandomPhrase()); 
-//   logPhrase(game.getRandomPhrase());
-
-//   const game = new Game(); 
-// game.getRandomPhrase().addPhraseToDisplay();
-
-// const game = new Game(); 
-// game.startGame(); 
-// console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 
 let game;
 const startButton = document.querySelector('#btn__reset')
@@ -32,4 +11,22 @@ startButton.addEventListener('click', (e)=>{
   // console.log(  game.removeLife())
   // const letterElement = document.getElementsByClassName('letter').length;
   // console.log(letterElement)
+})
+
+
+/**
+* Handles onscreen keyboard button clicks
+* @param (HTMLButtonElement) button - The clicked button element
+*/
+const qwerty = document.getElementById('qwerty')
+
+qwerty.addEventListener('click', e => {
+  console.log('keys are firing')
+  console.log(e.target.className)
+  if(e.target.className === 'key'){
+    console.log('lalala')
+game.handleInteraction(e.target)
+  }
+  
+
 })
