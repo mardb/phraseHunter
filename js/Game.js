@@ -58,6 +58,7 @@ won
     this.missed++;
     if (this.missed > 4) {
       this.gameOver(false);
+      this.gameReset();
     } else {
     }
   }
@@ -70,16 +71,17 @@ won
     const startScreenOverlay = document.querySelector('div#overlay');
     startScreenOverlay.style.display = '';
     let gameOverMessage = document.querySelector('#game-over-message');
-    console.log('hey');
     if (gameWon) {
-      console.log('is won!!');
       gameOverMessage.textContent = 'Great Job!';
       startScreenOverlay.classList.add('win');
+      startScreenOverlay.classList.remove('lose');
+
     } else {
       console.log('is lost!!');
       gameOverMessage.textContent = 'Sorry, better luck next time!';
       startScreenOverlay.classList = 'lose';
     }
+    this.resetGame();
   }
 
   /*
@@ -93,60 +95,35 @@ won
       //checks for win
       if (this.checkForWin()) {
         this.gameOver(true);
-        this.resetGame();
       }
     } else {
       button.disabled = true;
       button.classList.add('wrong');
       this.removeLife();
     }
-    
   }
 
   resetGame() {
-     //resetting li
-     const phrase = document.getElementById('phrase');
-     phrase.querySelector('ul').innerHTML = '';
-     //resetting life counts
-     this.missed = 0;
-     // resetting classes on keys
-     const qwerty = document.getElementById('qwerty');
-     const button = qwerty.getElementsByTagName('button');
- 
-     for (let i = 0; i < button.length; i++) {
-       button[i].disabled = false;
-       button[i].classList.remove('chosen','wrong'); 
- 
-     }
-     // resetting hearts
-     const tries = document.querySelectorAll('.tries img');
-     for (let i = 0; i < tries.length; i++) {
-       tries[i].src = 'images/liveHeart.png';
-     }
-     this.missed = 0;
-   
+    //resetting li
+    const phrase = document.getElementById('phrase');
+    phrase.querySelector('ul').innerHTML = '';
+    //resetting life counts
+    this.missed = 0;
+    // resetting classes on keys
+    const qwerty = document.getElementById('qwerty');
+    const button = qwerty.getElementsByTagName('button');
+
+    for (let i = 0; i < button.length; i++) {
+      button[i].disabled = false;
+      button[i].classList.remove('chosen', 'wrong');
+    }
+    // resetting hearts
+    const tries = document.querySelectorAll('.tries img');
+    for (let i = 0; i < tries.length; i++) {
+      tries[i].src = 'images/liveHeart.png';
+    }
+    this.missed = 0;
   }
 }
 
-/*
-Step 12
-Update your app to reset the gameboard between games. After a game is completed, the
-gameboard needs to be reset so that clicking the "Start Game" button will successfully load a
-new game.
-● Remove all `li` elements from the Phrase `ul` element.
-● Enable all of the onscreen keyboard buttons and update each to use the `key` CSS
-class, and not use the `chosen` or `wrong` CSS classes.
-● Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of
-the gameboard to display the `liveHeart.png` image.
-Test Your Code!
-After you've completed all of the necessary changes, just complete a game (either by guessing
-all of the letters in your active phrase or by incorrectly guessing five times) and then click the
-"Start Game" button on the win/loss screen overlay to check if you can successfully start a new
-game.
-● Was the new phrase added to the gameboard correctly (i.e. all of the letters from the
-previous phrase were removed before the new phrase's letters were added?)
-● Was the onscreen keyboard reset so that each letter button appears with a light gray
-color and is enabled (so that it can be clicked)?
-● Was the scoreboard reset back to five lives?
-Awesome job on completing your game!
-*/
+
