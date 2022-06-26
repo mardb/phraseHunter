@@ -2,9 +2,7 @@
 class Game {
   constructor() {
     this.missed = 0;
-    this.phrases = [
-      new Phrase('mom')
-    ];
+    this.phrases = [new Phrase('mom')];
     this.activePhrase = phrase;
     // console.log(this.activePhrase)
   }
@@ -21,7 +19,7 @@ class Game {
 
   /**
    * Begins game by selecting a random phrase and displaying it to user */
-  
+
   startGame() {
     const startScreenOverlay = document.querySelector('div#overlay');
     startScreenOverlay.style.display = 'none';
@@ -35,12 +33,11 @@ class Game {
 won
 */
   checkForWin() {
-    //This method checks to see if the player has revealed all of the letters in the active phrase.
     const letterElement = document.getElementsByClassName('letter').length;
     const letterClass = document.getElementsByClassName('show').length;
     letterElement.getAttribute;
     // show is name as length of phrases
-  
+
     if (letterElement === letterClass) {
       //if true that there is not more hide classes
       return true;
@@ -54,15 +51,15 @@ won
    */
   removeLife() {
     //This method removes a life from the scoreboard, by replacing one of the `liveHeart.png` images with a `lostHeart.png` image (found in the `images` folder) and increments the `missed` property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the `gameOver()` method.
-    
-    const tries = document.querySelectorAll('.tries img');
-    console.log(tries)
-    tries[this.missed].src = 'images/lostHeart.png';
-    this.missed ++;
-    if(this.missed > 4){
-        this.gameOver(false);
-    }
 
+    const tries = document.querySelectorAll('.tries img');
+    console.log(tries);
+    tries[this.missed].src = 'images/lostHeart.png';
+    this.missed++;
+    if (this.missed > 4) {
+      this.gameOver(false);
+    } else {
+    }
   }
 
   /**
@@ -71,17 +68,42 @@ won
    */
   gameOver(gameWon) {
     const startScreenOverlay = document.querySelector('div#overlay');
-    let gameOverMessage = document.querySelector('#game-over-message')
-    
-    if (gameWon){
-      startScreenOverlay.style.display = 'block';
-      gameOverMessage.innerHTML = 'Great Job!'
-      startScreenOverlay.className = 'win'
-    }else{
-      gameOverMessage.innerHTML = 'Sorry, better luck next time!'
-      startScreenOverlay.className = 'lose'
+    startScreenOverlay.style.display = '';
+    let gameOverMessage = document.querySelector('#game-over-message');
+    console.log('hey')
+    if (gameWon) {
+      console.log('is won!!');
+      gameOverMessage.textContent = 'Great Job!';
+      startScreenOverlay.classList.add('win');
+    } else {
+      console.log('is lost!!');
+      gameOverMessage.textContent = 'Sorry, better luck next time!';
+      startScreenOverlay.classList = 'lose';
     }
+
     //This method displays the original start screen overlay, and depending on the outcome of the game, updates the overlay `h1` element with a friendly win or loss message, and replaces the overlay’s `start` CSS class with either the `win` or `lose` CSS class.
-    
+  }
+
+  /*
+   This method checks to see if the onscreen keyboard button clicked by the player matches a letter in the phrase, and then directs the game based on a correct or incorrect guess. */
+  handleInteraction(button) {
+    //losing game
+    button.disabled = true;
+    if (this.activePhrase.checkLetter(button.textContent)) {
+      button.classList.add('chosen');
+      this.activePhrase.showMatchedLetter(button.textContent);
+      //checks for win
+      if (this.checkForWin()) {
+        this.gameOver(true);
+      } 
+    } else{
+      button.disabled = true;
+      button.classList.add('wrong');
+      this.removeLife()
+      
+    }
+ 
   }
 }
+
+

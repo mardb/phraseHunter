@@ -25,7 +25,7 @@ class Phrase {
    */
   checkLetter(letter) {
     //Checks to see if the letter selected by the player matches a letter in the phrase.
-    console.log(this.phrase.includes(letter));
+    // console.log(this.phrase.includes(letter));
     return this.phrase.includes(letter);
   }
 

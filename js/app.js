@@ -21,10 +21,7 @@ startButton.addEventListener('click', (e)=>{
 const qwerty = document.getElementById('qwerty')
 
 qwerty.addEventListener('click', e => {
-  console.log('keys are firing')
-  console.log(e.target.className)
   if(e.target.className === 'key'){
-    console.log('lalala')
 game.handleInteraction(e.target)
   }
   
