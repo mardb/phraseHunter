@@ -24,8 +24,6 @@ class Phrase {
    * @param (string) letter - Letter to check
    */
   checkLetter(letter) {
-    //Checks to see if the letter selected by the player matches a letter in the phrase.
-    // console.log(this.phrase.includes(letter));
     return this.phrase.includes(letter);
   }
 
@@ -35,10 +33,7 @@ class Phrase {
    */
   showMatchedLetter(letter) {
     //Reveals the letter(s) on the board that matches the player's selection.
-    //To reveal the matching letter(s), select all of the letter DOM elements that have a CSS class name that matches the selected letter and replace each selected element's `hide` CSS class with the `show` CSS class.
-    // const splitLetter = document.querySelectorAll(`.${letter}`);
     const splitLetter = document.getElementsByClassName(letter)
-    console.log(splitLetter)
     for (let i = 0; i < splitLetter.length; i++) {
       if (splitLetter[i].textContent.includes(letter)) {
         splitLetter[i].className=`show letter ${letter}`

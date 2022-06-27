@@ -20,11 +20,8 @@ class Game {
       new Phrase('I see skies of blue and clouds of white'),
       new Phrase('Going to the chapel and Im gonna get married'),
       new Phrase('Be our guest put our service to the test'),
-
-  
-  ];
+    ];
     this.activePhrase = null;
-    // console.log(this.activePhrase)
   }
 
   /**
@@ -56,24 +53,17 @@ won
     const letterElement = document.getElementsByClassName('letter').length;
     const letterClass = document.getElementsByClassName('show').length;
     letterElement.getAttribute;
-    // show is name as length of phrases
-
     if (letterElement === letterClass) {
-      //if true that there is not more hide classes
       return true;
     }
   }
 
   /**
-   * Increases the value of the missed property
-   * Removes a life from the scoreboard
+   * Increases the value of the missed property, Removes a life from the scoreboard
    * Checks if player has remaining lives and ends game if player is out
    */
   removeLife() {
-    //This method removes a life from the scoreboard, by replacing one of the `liveHeart.png` images with a `lostHeart.png` image (found in the `images` folder) and increments the `missed` property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the `gameOver()` method.
-
     const tries = document.querySelectorAll('.tries img');
-    console.log(tries);
     tries[this.missed].src = 'images/lostHeart.png';
     this.missed++;
     if (this.missed > 4) {
@@ -95,9 +85,7 @@ won
       gameOverMessage.textContent = 'Great Job!';
       startScreenOverlay.classList.add('win');
       startScreenOverlay.classList.remove('lose');
-
     } else {
-      console.log('is lost!!');
       gameOverMessage.textContent = 'Sorry, better luck next time!';
       startScreenOverlay.classList = 'lose';
     }
@@ -105,7 +93,7 @@ won
   }
 
   /*
-   This method checks to see if the onscreen keyboard button clicked by the player matches a letter in the phrase, and then directs the game based on a correct or incorrect guess. */
+  checks to see if the onscreen keyboard button clicked by the player matches a letter in the phrase, and then directs the game based on a correct or incorrect guess. */
   handleInteraction(button) {
     //losing game
     button.disabled = true;
@@ -145,5 +133,3 @@ won
     this.missed = 0;
   }
 }
-
-
