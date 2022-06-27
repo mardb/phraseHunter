@@ -13,6 +13,7 @@ startButton.addEventListener('click', (e)=>{
 /**
 * Handles onscreen keyboard button clicks
 * @param (HTMLButtonElement) button - The clicked button element
+extra credit would go here
 */
 const qwerty = document.getElementById('qwerty')
 
