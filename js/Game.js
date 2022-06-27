@@ -23,7 +23,7 @@ class Game {
 
   
   ];
-    this.activePhrase = phrase;
+    this.activePhrase = null;
     // console.log(this.activePhrase)
   }
 
